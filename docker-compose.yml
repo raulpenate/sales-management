@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # Database configurations
+  db:
+    build:
+      context: ./sale-management-postgres
+      dockerfile: Dockerfile
+      args:
+        DB_USER: ${DB_USER}
+        DB_PASSWORD: ${DB_PASSWORD}
+        DB_NAME: ${DB_NAME}
+    container_name: sm_db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d db-name -U ${DB_USER}"]
+
+  # Backend configurations
+  # backend:
+  #   build:
+  #     context: ./sales-management-springboot
+  #     dockerfile: Dockerfile
+  #   container_name: sm_backend
+  #   restart: always
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - postgres
+  #   ports:
+  #     - "8080:8080"
+
+  # Frontend configurations
