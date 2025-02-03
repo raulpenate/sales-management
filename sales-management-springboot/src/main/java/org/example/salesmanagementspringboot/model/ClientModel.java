@@ -18,10 +18,7 @@ public class ClientModel {
     private Long id;
     private String name;
     private String email;
-
-    @ManyToOne
-    @JoinColumn(name = "rol_id", nullable = false)
-    private RoleModel rol;
+    private String password;
 
     @OneToMany(mappedBy = "client")
     private List<SaleModel> sale;
