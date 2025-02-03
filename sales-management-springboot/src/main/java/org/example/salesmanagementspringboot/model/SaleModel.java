@@ -1,8 +1,8 @@
 package org.example.salesmanagementspringboot.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +13,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class SaleModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +25,6 @@ public class SaleModel {
     @JoinColumn(name = "client_id", nullable = false)
     private ClientModel client;
 
-    @OneToMany(mappedBy = "sale")
-    private List<SaleDetailModel> salesDetails;
+    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SaleDetailModel> saleDetails;
 }

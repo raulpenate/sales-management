@@ -1,16 +1,19 @@
 package org.example.salesmanagementspringboot.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "sale_details")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class SaleDetailModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +23,6 @@ public class SaleDetailModel {
 
     @ManyToOne
     @JoinColumn(name = "sale_id", nullable = false)
-    @JsonIgnore
     private SaleModel sale;
 
     @ManyToOne
