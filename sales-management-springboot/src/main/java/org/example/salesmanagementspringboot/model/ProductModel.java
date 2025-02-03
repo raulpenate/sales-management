@@ -5,24 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
-@Table(name = "sales")
+@Table(name = "products")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SaleModel {
+public class ProductModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String date;
-    private double total;
-
-    @ManyToOne
-    @JoinColumn(name = "client_id", nullable = false)
-    private ClientModel client;
-
-    @OneToMany(mappedBy = "sale")
-    private List<SaleDetailModel> salesDetails;
+    private String name;
+    private String price;
+    private String stock;
 }
