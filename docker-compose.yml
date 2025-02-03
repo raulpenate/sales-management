@@ -19,20 +19,23 @@ services:
     ports:
       - "${DB_PORT}:${DB_PORT}"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -d db-name -U ${DB_USER}"]
+      test: [ "CMD-SHELL", "pg_isready -d db-name -U ${DB_USER}" ]
 
   # Backend configurations
-  # backend:
-  #   build:
-  #     context: ./sales-management-springboot
-  #     dockerfile: Dockerfile
-  #   container_name: sm_backend
-  #   restart: always
-  #   env_file:
-  #     - .env
-  #   depends_on:
-  #     - postgres
-  #   ports:
-  #     - "8080:8080"
-
+  #backend:
+  #  build:
+  #    context: ./sales-management-springboot
+  #    dockerfile: Dockerfile
+  #  container_name: sm_backend
+  #  restart: always
+  #  env_file:
+  #    - .env
+  #  depends_on:
+  #    - db
+  #  ports:
+  #    - "8080:8080"
+    
   # Frontend configurations
+
+volumes:
+  posgres_data:
