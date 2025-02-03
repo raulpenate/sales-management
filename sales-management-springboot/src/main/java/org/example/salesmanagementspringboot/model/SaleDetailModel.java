@@ -1,5 +1,6 @@
 package org.example.salesmanagementspringboot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +20,7 @@ public class SaleDetailModel {
 
     @ManyToOne
     @JoinColumn(name = "sale_id", nullable = false)
+    @JsonIgnore
     private SaleModel sale;
 
     @ManyToOne

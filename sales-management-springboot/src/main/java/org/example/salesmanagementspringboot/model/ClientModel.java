@@ -1,5 +1,6 @@
 package org.example.salesmanagementspringboot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,5 +22,6 @@ public class ClientModel {
     private String password;
 
     @OneToMany(mappedBy = "client")
+    @JsonIgnore
     private List<SaleModel> sale;
 }

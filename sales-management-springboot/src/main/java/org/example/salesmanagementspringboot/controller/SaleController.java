@@ -1,7 +1,7 @@
 package org.example.salesmanagementspringboot.controller;
 
-import org.example.salesmanagementspringboot.dto.ClientWithRolesDTO;
-import org.example.salesmanagementspringboot.service.ClientService;
+import org.example.salesmanagementspringboot.model.SaleModel;
+import org.example.salesmanagementspringboot.service.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ClientController {
+public class SaleController {
     @Autowired
-    private ClientService clientService;
+    private SaleService saleService;
 
-    @GetMapping("/clients/{id}")
-    public ResponseEntity<ClientWithRolesDTO> getClient(@PathVariable Long id){
-        return ResponseEntity.ok(clientService.getClientWithRoles(id));
+    @GetMapping("sale/{id}")
+    public ResponseEntity<SaleModel> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(saleService.findById(id));
     }
+
 
 }
